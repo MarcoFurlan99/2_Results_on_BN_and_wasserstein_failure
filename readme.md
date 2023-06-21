@@ -16,10 +16,18 @@ So this brings up naturally a bunch of observations:
 
 - the gaussianity assumption does not hold. Not only for the obvious zero-dimensions, which are not a big bother since we can just remove them (a simple torch.min(dimension) == 0 would work), but the issue is that most dimensions show a more various behaviour then a simple 1-d gaussian. Remembering that these are projections we conclude that that 1024-d distribution has a behaviour which is much more complex that a Gaussian, and should not (in my opinion) modeled by that.
 
-Despite all of this, we can ideally still try the Wasserstein. And I would've done so, if it wasn't for the results I got checking the latent space for $\mu_2 - \mu_1 = 22$. Here is what I got:
+Despite all of this, we can ideally still try the Wasserstein. And I would've done so, if it wasn't for the results I got checking the latent space of the model trained on $\mu_2 - \mu_1 = 22$. Here is what I got:
 
 
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/feature_space/mu_distance_22.png?raw=true)
+
+So that was confusing... I filtered for dimensions which did not have zeros (torch.min(dimension) != 0) and I got:
+
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/feature_space/mu_distance_22_nonzero.png?raw=true)
+
+So.. just 3-4 values per dimension? Weird, so I checked the latent space of the model trained on $\mu_2 - \mu_1 = 254$, which is the best performing on its own dataset.
+
 
 # Result 2: the success of BN adaptation
 
