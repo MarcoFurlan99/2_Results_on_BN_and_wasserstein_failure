@@ -50,7 +50,7 @@ I tried changing around some parameters for the usual IoU graph procedure and go
 
 - $\mu_2 - \mu_1 = k$ where $k$ is constant
 
-I then did the computation for $k = 20, 40, 80$. These are the resulting samples (I know image is small but it is important to see how they are, click on it and zoom):
+I then did the computation changing $\mu_1$ among the different datasets, and did it three times for $k = 20, 40, 80$. These are the resulting samples (I know image is small but it is important to see how they are, click on it and zoom):
 
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/samples_all.png?raw=true)
 
@@ -83,4 +83,3 @@ I also include the training history because it is unusually messy:
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/training_history_4.png?raw=true)
 
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/training_history_5.png?raw=true)
-  
