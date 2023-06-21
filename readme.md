@@ -29,5 +29,8 @@ So that was confusing... I filtered for dimensions which did not have zeros (tor
 So.. just 3-4 values per dimension? Weird, so I checked the latent space of the model trained on $\mu_2 - \mu_1 = 254$, which is the best performing on its own dataset.
 
 
+
+
+
 # Result 2: the success of BN adaptation
 
