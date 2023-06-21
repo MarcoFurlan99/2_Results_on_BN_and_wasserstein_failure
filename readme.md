@@ -52,13 +52,7 @@ I tried changing around some parameters for the usual IoU graph procedure and go
 
 I then did the computation for $k = 20, 40, 80$. These are the resulting samples:
 
-  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/samples_3.png?raw=true)
-
-
-  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/samples_4.png?raw=true)
-
-
-  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/samples_5.png?raw=true)
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/samples_all.png?raw=true)
 
 And here are the usual graphs:
 
@@ -68,7 +62,7 @@ And here are the usual graphs:
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/graph_the_3_musketeers_4.png?raw=true)
 
 
-  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/graph_the_3_musketeers_5.png?raw=true=400x540)
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/graph_the_3_musketeers_5.png?raw=true)
 
 So great results in favour of BN! I also wanted to include some extra graphs that show the problem in the first graph: it is a very obvious behaviour given how the datasets are made:
 
