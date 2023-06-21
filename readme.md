@@ -19,5 +19,7 @@ So this brings up naturally a bunch of observations:
 Despite all of this, we can ideally still try the Wasserstein. And I would've done so, if it wasn't for the results I got checking the latent space for $\mu_2 - \mu_1 = 22$. Here is what I got:
 
 
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/feature_space/mu_distance_22.png?raw=true)
+
 # Result 2: the success of BN adaptation
 
