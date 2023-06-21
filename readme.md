@@ -50,7 +50,7 @@ I tried changing around some parameters for the usual IoU graph procedure and go
 
 - $\mu_2 - \mu_1 = k$ where $k$ is constant
 
-I then did the computation for $k = 20, 40, 80$. These are the resulting samples:
+I then did the computation for $k = 20, 40, 80$. These are the resulting samples (I know image is small but it is important to see how they are, click on it and zoom):
 
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/samples_all.png?raw=true)
 
@@ -64,5 +64,23 @@ And here are the usual graphs:
 
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/graph_the_3_musketeers_5.png?raw=true)
 
-So great results in favour of BN! I also wanted to include some extra graphs that show the problem in the first graph: it is a very obvious behaviour given how the datasets are made:
+So great results in favour of BN! I also wanted to include some extra graphs that show the problem in the U-Net WITHOUT batch norm graph. Images correspond to the predictions:
 
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/source_models_predictions_3.png?raw=true)
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/source_models_predictions_4.png?raw=true)
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/source_models_predictions_5.png?raw=true)
+
+It is not necessary to see the ground truth masks to understand what is happening (see above samples). Whiter images are all interpreted as mask, and blacker images are all interpreted as not-mask. Hence the values 0.20, 0.21 (average area occupied by masks) and 0.0 (no intersection nor union --> IoU = 0).
+
+I also include the training history because it is unusually messy:
+
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/training_history_3.png?raw=true)
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/training_history_4.png?raw=true)
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/training_history_5.png?raw=true)
+  
