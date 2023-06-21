@@ -16,21 +16,59 @@ So this brings up naturally a bunch of observations:
 
 - the gaussianity assumption does not hold. Not only for the obvious zero-dimensions, which are not a big bother since we can just remove them (a simple torch.min(dimension) == 0 would work), but the issue is that most dimensions show a more various behaviour then a simple 1-d gaussian. Remembering that these are projections we conclude that that 1024-d distribution has a behaviour which is much more complex that a Gaussian, and should not (in my opinion) modeled by that.
 
-Despite all of this, we can ideally still try the Wasserstein. And I would've done so, if it wasn't for the results I got checking the latent space of the model trained on $\mu_2 - \mu_1 = 22$. Here is what I got:
+Despite all of this, we can still try the Wasserstein after removing the "zero-dimensions". And I would've done so, if it wasn't for the results I got checking the latent space of the model trained on $\mu_2 - \mu_1 = 22$. Here is what I got:
 
 
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/feature_space/mu_distance_22.png?raw=true)
 
-So that was confusing... I filtered for dimensions which did not have zeros (torch.min(dimension) != 0) and I got:
+So that's confusing... I consequently had to filter for dimensions which did not just contain zeros (I did more generally torch.min(dimension) != 0) and I got:
 
 
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/feature_space/mu_distance_22_nonzero.png?raw=true)
 
-So.. just 3-4 values per dimension? Weird, so I checked the latent space of the model trained on $\mu_2 - \mu_1 = 254$, which is the best performing on its own dataset.
+So.. just 3 to 8 values per dimension, of order 1e-15? (Is it? I don't even know what that 1e-15+...e-8 scale is tbh). Weird, so I checked the latent space of the model trained on $\mu_2 - \mu_1 = 254$, which is the best performing on its own dataset, here are the results (after removing "zero-dimensions"):
 
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/feature_space/mu_distance_254_nonzero.png?raw=true)
 
+So again, a bunch of numbers instead of a ditribution. What is even MORE notable, and it is not evident from this last graph (because I rescaled) but can be seen from the graph above, is that values sum up to multiples of 5000. It came naturally to do a per-image check. So I chose the dimension corresponding to the bottom-right graph, and plotted the 5000 histograms, one per image, summing the 16 numbers of the feature space.
 
+Here are the first 16:
 
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/feature_space/mu_distance_254_per_image.png?raw=true)
+
+As you can image, also the remaining 1484 looked the same.
+
+In conclusion, the latent space is the same no matter the input image. So why is that? My personal concolusion is that the task of classification in the cases $\mu_2 - \mu_1 = 22$ and $\mu_2 - \mu_1 = 254$ is "too simple", to the point that the use of the last latent space is not required, and the entirety of the learning is done on the other layers. This is possible thanks to the structure of the U-Net, which includes "copy and crop" passages from the contracting path to the expansive path.
+
+So if we want to compute a distance between these latent spaces we should take into account the fact that the values in such latent space may be, in some cases, just a few numbers very close to zero, at least for the source-to-original network case, which in my opinion highly discourages the possibility of any distance concerning this layer. I would instead try to focus on higher feature spaces (or even on the images themselves? which would be absolutely ridicolous honestly but it is also a possibility).
 
 # Result 2: the success of BN adaptation
+
+I tried changing around some parameters for the usual IoU graph procedure and got very interesting results. So this time i fixed:
+
+- $\sigma_1 = \sigma_2 = 50$
+
+- $\mu_2 - \mu_1 = k$ where $k$ is constant
+
+I then did the computation for $k = 20, 40, 80$. These are the resulting samples:
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/samples_3.png?raw=true)
+
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/samples_4.png?raw=true)
+
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/samples_5.png?raw=true)
+
+And here are the usual graphs:
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/graph_the_3_musketeers_3.png?raw=true)
+
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/graph_the_3_musketeers_4.png?raw=true)
+
+
+  ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/BN_results/graph_the_3_musketeers_5.png?raw=true)
+
+So great results in favour of BN! I also wanted to include some extra graphs that show the problem in the first graph: it is a very obvious behaviour given how the datasets are made:
 
