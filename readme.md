@@ -30,7 +30,7 @@ So.. just 3 to 8 values per dimension, of order 1e-15? (Is it? I don't even know
 
   ![alt text](https://github.com/MarcoFurlan99/2_Results_on_BN_and_Wasserstein_failure/blob/master/feature_space/mu_distance_254_nonzero.png?raw=true)
 
-So again, a bunch of numbers instead of a ditribution. What is even MORE notable, and it is not evident from this last graph (because I rescaled) but can be seen from the graph above, is that values sum up to multiples of 5000. It came naturally to do a per-image check. So I chose the dimension corresponding to the bottom-right graph, and plotted the 5000 histograms, one per image, summing the 16 numbers of the feature space.
+So again, a bunch of numbers instead of a ditribution. What is even MORE notable, and it is not evident from this last graph (because I rescaled) but can be seen from the graph above, is that values sum up to multiples of 5000. It came naturally to do a per-image check. So I chose the dimension corresponding to the top-left graph, and plotted the 5000 histograms, one per image, summing the 16 numbers of the feature space.
 
 Here are the first 16:
 
